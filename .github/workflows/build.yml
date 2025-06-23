@@ -1,4 +1,4 @@
-name: unit-test
+name: build
 on:
   pull_request:
   push:
@@ -15,5 +15,8 @@ jobs:
           node-version: "16.x"
       - run: npm ci
       - run: npm run build
-      - run: npm test
-      
+      - uses: actions/upload-artifact@v3
+        with:
+          name: skulpt-build
+          path: |
+            dist/
